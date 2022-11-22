@@ -27,6 +27,7 @@ const STATIC_ROOT = pathJoin(__dirname, "public");
 app.set("views", ROOT);
 app.set("view engine", "ejs");
 app.set("trust proxy", true);
+app.set("json spaces", 2);
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -40,7 +41,7 @@ app.use((req, res, next) => {
 app.get(["/", "/index.html"], async (req, res) => {
   try {
     let cookie = req.cookies["lang"];
-    let cloudflareipcountry = req.headers["cf-ipcountry"];
+    let cloudflareipcountry = req.headers["x-vercel-ip-country"] || req.headers["cf-ipcountry"];
     let lang = cookie || cloudflareipcountry || "en";
     let countryCode = lang;
     if (countryCode == "ID") {
