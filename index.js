@@ -41,7 +41,7 @@ app.use((req, res, next) => {
 app.get(["/", "/index.html"], async (req, res) => {
   try {
     let cookie = req.cookies["lang"];
-    let cloudflareipcountry = req.headers["x-vercel-ip-country"] || req.headers["cf-ipcountry"];
+    let cloudflareipcountry = req.headers["cf-ipcountry"] || req.headers["x-vercel-ip-country"];
     let lang = cookie || cloudflareipcountry || "en";
     let countryCode = lang;
     if (countryCode == "ID") {
