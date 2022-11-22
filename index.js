@@ -23,6 +23,7 @@ let transporter = mailer.createTransport({
       },
     });
 const ROOT = pathJoin(__dirname, "views");
+const STATIC_ROOT = pathJoin(__dirname, "views");
 app.set("views", ROOT);
 app.set("view engine", "ejs");
 app.set("trust proxy", true);
@@ -167,7 +168,7 @@ app.get("/robots.txt", (req, res) => {
       "/sitemap.xml"
   );
 });
-app.use(express.static("public"));
+app.use(express.static(STATIC_ROOT));
 
 app.use((req, res) => res.status(404).render("404"))
 
