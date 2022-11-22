@@ -23,7 +23,7 @@ let transporter = mailer.createTransport({
       },
     });
 const ROOT = pathJoin(__dirname, "views");
-const STATIC_ROOT = pathJoin(__dirname, "views");
+const STATIC_ROOT = pathJoin(__dirname, "public");
 app.set("views", ROOT);
 app.set("view engine", "ejs");
 app.set("trust proxy", true);
@@ -54,13 +54,17 @@ app.get(["/", "/index.html"], async (req, res) => {
   }
 });
 
+app.get("/headers", (req, res) => {
+res.send(req.headers);
+})
+
 app.get("/id", (req, res) => {
-  res.cookie("lang", "id", { maxAge: 900000, httpOnly: true });
+  res.cookie("lang", "ID", { maxAge: 900000, httpOnly: true });
   res.render("id");
 });
 
 app.get("/en", (req, res) => {
-  res.cookie("lang", "en", { maxAge: 900000, httpOnly: true });
+  res.cookie("lang", "EN", { maxAge: 900000, httpOnly: true });
   res.render("en");
 });
 
