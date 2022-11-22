@@ -35,6 +35,7 @@ app.use(cookieParser());
 app.use((req, res, next) => {
   res.locals.titleweb = "Tikly";
   res.locals.req = req;
+  res.locals.ipAddr = req.headers["cf-connecting-ip"] || req.ip;
   next();
 });
 
