@@ -24,6 +24,9 @@ let transporter = mailer.createTransport({
     });
 const ROOT = pathJoin(__dirname, "views");
 const STATIC_ROOT = pathJoin(__dirname, "public");
+var useragent = require('express-useragent');
+ 
+app.use(useragent.express());
 app.set("views", ROOT);
 app.set("view engine", "ejs");
 app.set("trust proxy", true);
@@ -36,6 +39,7 @@ app.use((req, res, next) => {
   res.locals.titleweb = "Tikly";
   res.locals.req = req;
   res.locals.ipAddr = req.headers["cf-connecting-ip"] || req.ip;
+  res.locals.ua = req.useragent;
   next();
 });
 
