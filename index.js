@@ -10,6 +10,9 @@ const { Readable } = require("stream");
 const cookieParser = require("cookie-parser");
 const { getMeta } = require("./lib");	
 const mailer = require("nodemailer");
+const {
+  join: pathJoin
+} = require("path");
 let transporter = mailer.createTransport({
       host: "mataram.nusantarahost.net",
       port: 465,
@@ -19,6 +22,8 @@ let transporter = mailer.createTransport({
         pass: "clph123@/",
       },
     });
+const ROOT = pathJoin(__dirname, "views");
+app.set("views", ROOT);
 app.set("view engine", "ejs");
 app.set("trust proxy", true);
 app.use(logger("dev"));
