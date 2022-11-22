@@ -1,0 +1,171 @@
+const express = require("express");
+const app = express();
+const port = process.env.PORT || 3000;
+const logger = require("morgan");
+const bodyParser = require("body-parser");
+const axios = require("axios");
+const { SitemapStream, streamToPromise } = require("sitemap");
+const { createGzip } = require("zlib");
+const { Readable } = require("stream");
+const cookieParser = require("cookie-parser");
+const { getMeta } = require("./lib");	
+const mailer = require("nodemailer");
+let transporter = mailer.createTransport({
+      host: "mataram.nusantarahost.net",
+      port: 465,
+      secure: true,
+      auth: {
+        user: "noreply@caliph.my.id",
+        pass: "clph123@/",
+      },
+    });
+app.set("view engine", "ejs");
+app.set("trust proxy", true);
+app.use(logger("dev"));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use((req, res, next) => {
+  res.locals.titleweb = "Tikly";
+  res.locals.req = req;
+  next();
+});
+
+app.get(["/", "/index.html"], async (req, res) => {
+  try {
+    let cookie = req.cookies["lang"];
+    let cloudflareipcountry = req.headers["cf-ipcountry"];
+    let lang = cookie || cloudflareipcountry || "en";
+    let countryCode = lang;
+    if (countryCode == "ID") {
+      res.redirect("/id");
+    } else {
+      res.redirect("/en");
+    }
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+});
+
+app.get("/id", (req, res) => {
+  res.cookie("lang", "id", { maxAge: 900000, httpOnly: true });
+  res.render("id");
+});
+
+app.get("/en", (req, res) => {
+  res.cookie("lang", "en", { maxAge: 900000, httpOnly: true });
+  res.render("en");
+});
+
+app.get("/about", (req, res) => {
+  res.render("about");
+});
+
+app.get("/contact", (req, res) => {
+  res.render("contact");
+});
+
+app.get("/privacy", (req, res) => {
+  res.render("privacy");
+});
+
+app.get("/terms", (req, res) => {
+  res.render("terms");
+});
+
+app.post("/contact", async (req, res) => {
+  try {
+    let { name, email, message } = req.body;
+
+    let mail = {
+      from: `"${name}" <${email}>`,
+      to: "caliphatibrata368@gmail.com",
+      subject: "Tikly Contact",
+      text: `===== Tikly Contacts =====\n\nFrom: ${email}\nName: ${name}\nMessage: ${message}\n\n===== Automated Send Mail =====`,	
+    };
+
+    await transporter.sendMail(mail);
+    res.render("contact", { success: true })
+  } catch (err) {
+    console.log(err);
+    res.render("contact", { success: false })
+  }
+});
+
+
+app.get("/allpathroute", (req, res) => {
+  let data = [];
+  app._router.stack.forEach(function (r) {
+    if (r.route && r.route.path) {
+      if (typeof r.route.path == "object") {
+        r.route.path.map((path) => {
+          data.push(path);
+        });
+      } else {
+        data.push(r.route.path);
+      }
+    }
+  });
+  res.send(data);
+});
+
+app.post("/download", async (req, res) => {
+  let url = req.body._qgB
+  console.log(url)
+  if (!url) {
+    res.render("id", { error: "Please enter a valid URL" });
+  } else {
+    try {
+      let meta = await getMeta(url);
+      res.render("download", { result: meta });
+    } catch (err) {
+      res.render("id", { error: err.message });
+    }
+  }
+});
+app.get("/sitemap.xml", async (req, res) => {
+  res.setHeader("Content-Type", "application/xml");
+  res.setHeader("Content-Encoding", "gzip");
+  let pathall = [];
+  app._router.stack.forEach(function (r) {
+    if (r.route && r.route.path) {
+      if (typeof r.route.path == "object") {
+        r.route.path.map((path) => {
+          pathall.push(path);
+        });
+      } else {
+        pathall.push(r.route.path);
+      }
+    }
+  });
+  const smStream = new SitemapStream({
+    hostname: req.protocol + "://" + req.host,
+  });
+  const pipeline = smStream.pipe(createGzip());
+  pathall.filter((path) => {
+    if (path !== "/sitemap.xml" && path !== "/allpathroute" && path !== "/download" && path !== "/robots.txt" && path !== "//") {
+      smStream.write({ url: path, changefreq: "daily", priority: 0.9 });
+    }
+  });
+  smStream.end();
+  streamToPromise(pipeline).then((sm) => res.send(sm));
+});
+
+app.get("/robots.txt", (req, res) => {
+  res.type("text/plain");
+  res.send(
+    "User-agent: *\nAllow: /\nSitemap: " +
+      req.protocol +
+      "://" +
+      req.host +
+      "/sitemap.xml"
+  );
+});
+app.use(express.static("public"));
+
+app.use((req, res) => res.status(404).render("404"))
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});

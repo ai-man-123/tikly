@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <%- include('components/header-id') %>
+  </head>
+  <body>
+    <div class="navbar-fixed">
+      <nav class="bg">
+        <div class="nav-wrapper">
+          <a href="/" class="cushead brand-logo center"><%= titleweb %></a
+          ><a data-target="mobile-demo" class="sidenav-trigger"
+            ><i class="material-icons">menu</i></a
+          >
+          <ul class="left hide-on-med-and-down">
+            <li class="active"><a href="/id">Beranda</a></li>
+            
+            <li><a href="/about">Tentang</a></li>
+          </ul>
+          <ul class="right hide-on-med-and-down">
+            <li>
+              <a class="dropdown-trigger" data-target="languages">Bahasa <i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+          </ul>
+          <ul id="languages" class="dropdown-content">
+            <li>
+              <a href="/en">English</a>
+            </li>
+            <li class="active">
+              <a href="/id">Bahasa Indonesia</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <ul class="sidenav" id="mobile-demo">
+      <li class="active"><a href="/">Beranda</a></li>
+      
+      <li><a href="/about">Tentang</a></li>
+      
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header"
+              >Language<i class="material-icons">arrow_drop_down</i></a
+            >
+            <div class="collapsible-body">
+              <ul>
+                <li><a href="/en">English</a></li>
+                <li class="active"><a href="/id">Bahasa Indonesia‬</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <div class="welcome center">
+      <div class="container">
+        <div class="row">
+          <div class="col s12">
+            <h1 class="headone white-text">Download Video TikTok</h1>
+            <h2 class="headtwo white-text">
+              TikTok Downloader Terbaik. HD. Tanpa Watermark
+            </h2>
+            <div class="ad-slot">
+              
+              <script type="text/javascript">
+                (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </div>
+            <form
+              id="submit-form"
+              action="https://<%= req.hostname %>/download"
+              method="POST"
+              class="col s12"
+            >
+              <div class="row">
+                <div class="input-field col s12 inputbg">
+                  <input
+                    name="_qgB"
+                    type="text"
+                    autocapitalize="none"
+                    id="link_url"
+                    style="border-color: white"
+                    class="inputw white-text validate"
+                    required
+                    autocomplete="off"
+                  />
+                  <label class="white-text" for="link_url"
+                    >Masukkan Tautan di sini...</label
+                  >
+                  <div id="paste">
+                    <i class="material-icons prefix right">content_paste</i>
+                  </div>
+                </div>
+                <div class="input-field col s12">
+                  <button
+                    class="btn waves-effect waves-light orange"
+                    type="submit"
+                  >
+                    <i class="material-icons right">send</i> Unduh
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="col s12">
+        <div class="row section">
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center pink-text">
+                <i class="large material-icons">card_giftcard</i>
+              </h2>
+              <h5 class="center">Unduhan Gratis!</h5>
+              <p class="light center-align">
+                Download Video TikTok Tanpa Batas Tanpa Tanda Air Secara Gratis.
+                Download video TikTok tanpa Batas!
+              </p>
+            </div>
+          </div>
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center pink-text">
+                <i class="large material-icons">music_video</i>
+              </h2>
+              <h5 class="center">Video & Mp3</h5>
+              <p class="light center-align">
+                Download Video TikTok dengan Kualitas Terbaik dalam MP4 (HD)
+                dari <%= titleweb %>. Download Video TikTok dalam Format MP4 &
+                MP3.
+              </p>
+            </div>
+          </div>
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center pink-text">
+                <i class="large material-icons">cloud_download</i>
+              </h2>
+              <h5 class="center">Unduh Mudah</h5>
+              <p class="light center-align">
+                Pengunduh Video TikTok Tercepat. Download video TikTok tanpa
+                Watermark dengan Mudah dengan <%= titleweb %>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include("components/footer-id") %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" integrity="sha512-NiWqa2rceHnN3Z5j6mSAvbwwg3tiwVNxiAQaaSMSXnRRDh5C2mk/+sKQRw8qjV1vN4nf8iK2a0b048PnHbyx+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <% if (locals.error) { %>
+    <script>
+      M.toast({ html: "<%= locals.error %>" });
+    </script>
+    <% } %>
+    <script type="text/javascript">
+      if ("serviceWorker" in navigator) {
+                  window.addEventListener("load", function() {
+                      navigator.serviceWorker.register("/service-worker.js");
+                  });
+              }
+              $(document).ready(function() {
+                  $('.sidenav').sidenav();
+              });
+              $(document).ready(function() {
+                  $('.collapsible').collapsible();
+              });
+              $(".dropdown-trigger").dropdown();
+              $("#submit-form").submit(function() {
+                  $(this).find("button")[0].disabled = true;
+                  $(this).find("button").text("Please wait..");
+              });
+    </script>
+    <script type="text/javascript">
+      document.getElementById("paste").addEventListener("click", function(a) {
+                  a = document.getElementById("paste");
+                  var c = document.getElementById("link_url");
+                  '<i class="material-icons prefix right">delete</i>' === a.innerHTML ? (c.value = "", a.innerHTML = '<i class="material-icons prefix right">content_paste</i>', $("label[for='link_url']").removeClass('active')) : navigator.clipboard.readText().then(function(f) {
+                      return c.value = f
+                  }, a.innerHTML = '<i class="material-icons prefix right">delete</i>', $("label[for='link_url']").addClass('active'))
+              });
+    </script>
+  </body>
+  </html>

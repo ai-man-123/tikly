@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <%- include("components/header-en", { titlecustom: "404 - Page not found", description: "Page was Not Found, Please check your URL" }) %>
+  </head>
+  <body>
+    <div class="navbar-fixed">
+      <nav class="bg">
+        <div class="nav-wrapper">
+          <a href="/en" class="cushead brand-logo center"><%= locals.titleweb %></a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+            <i class="material-icons">menu</i>
+          </a>
+          <ul class="left hide-on-med-and-down">
+            <li>
+              <a href="/en">Home</a>
+            </li>
+            <li>
+              <a href="/about">About</a>
+            </li>
+          </ul>
+          <ul class="right hide-on-med-and-down">
+            <li>
+              <a class="dropdown-trigger" data-target="languages">Language <i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+          </ul>
+          <ul id="languages" class="dropdown-content">
+            <li>
+              <a href="/en">English</a>
+            </li>
+            <li>
+              <a href="/id">Bahasa Indonesia</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <ul class="sidenav" id="mobile-demo">
+      <li>
+        <a href="/en">Home</a>
+      </li>
+      <li>
+        <a href="/about">About</a>
+      </li>
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Language <i class="material-icons">arrow_drop_down</i>
+            </a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+                  <a href="/en">English</a>
+                </li>
+                <li>
+                  <a href="/id">Bahasa Indonesia</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <div class="welcome center">
+      <div class="container">
+        <div style="padding: 20px 0px 20px 0px;" class="row">
+          <div class="col s12">
+            <h1 class="headone white-text">OOOPS! PAGE NOT FOUND.</h1>
+            <a style="margin-top: 20px;margin-bottom: 20px;" href="/" class="waves-effect waves-light btn orange">
+              <i class="material-icons left">home</i>Home </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="section">
+        <h5 class="title">OOOPS! PAGE NOT FOUND.</h5>
+        <div class="divider"></div>
+        <p>It looks like we missed something, or you entered the wrong URL in the address bar.</p>
+      </div>
+    </div>
+    <%- include("components/footer-en") %>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" integrity="sha512-NiWqa2rceHnN3Z5j6mSAvbwwg3tiwVNxiAQaaSMSXnRRDh5C2mk/+sKQRw8qjV1vN4nf8iK2a0b048PnHbyx+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function() {
+          navigator.serviceWorker.register("/service-worker.js");
+        });
+      }
+      $(document).ready(function() {
+        $('.sidenav').sidenav();
+      });
+      $(document).ready(function() {
+        $('.collapsible').collapsible();
+      });
+      $(".dropdown-trigger").dropdown();
+    </script>
+    <script type="text/javascript">
+      M.toast({
+        html: 'Page not found, check your URL again!'
+      })
+    </script>
+  </body>
+</html>

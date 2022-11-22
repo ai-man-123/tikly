@@ -1,0 +1,262 @@
+<meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5, shrink-to-fit=no"
+    />
+    <title>
+      <%= locals.titlecustom || "TikTok Downloader - Download TikTok videos without watermark HD for free" %>
+    </title>
+    <meta
+      name="description"
+      content="<%= locals.description || titleweb +' helps you to download TikTok videos No Watermark online with our TikTok downloader. Download TikTok videos with or without watermark & Tiktok MP3 from any device in two taps.' %>"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://<%= req.hostname %>/en" />
+    <meta
+      property="og:title"
+      content="<%= locals.titlecustom || 'TikTok Downloader - Download TikTok videos without watermark HD for free' %>"
+    />
+    <meta
+      property="og:description"
+      content="<%= locals.description || titleweb+' helps you to download TikTok videos No Watermark online with our TikTok downloader. Download TikTok videos with or without watermark & Tiktok MP3 from any device in two taps.' %>"
+    />
+    <meta
+      property="og:image"
+      content="/assets/img/preview-en.png"
+    />
+    <meta property="og:site_name" content="<%= titleweb %>" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://<%= req.hostname %>/en" />
+    <meta
+      property="twitter:title"
+      content="<%= locals.titlecustom || 'TikTok Downloader - Download TikTok videos without watermark HD for free' %>"
+    />
+    <meta
+      property="twitter:description"
+      content="<%= locals.description || titleweb+' helps you to download TikTok videos No Watermark online with our TikTok downloader. Download TikTok videos with or without watermark & Tiktok MP3 from any device in two taps.' %>"
+    />
+    <meta
+      property="twitter:image"
+      content="https://<%= req.hostname %>/assets/img/preview-en.png"
+    />
+    <link
+      rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+      as="style"
+    />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap"
+      as="style"
+    />
+    <link
+      rel="preload"
+      href="/assets/font/custom.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="/assets/img/cover.png" as="image" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/img/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/img/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/assets/js/manifest.json" />
+    <link
+      rel="mask-icon"
+      href="/assets/img/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" />
+    <link rel="canonical" href="<%= req.protocol %>://<%= req.hostname %>" />
+    <link rel="alternate" hreflang="x-default" href="/" />
+    <link rel="alternate" hreflang="en" href="/en" />
+    <link rel="alternate" hreflang="id" href="/id" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="msapplication-config" content="/assets/img/browserconfig.xml" />
+    <meta name="theme-color" content="#ef124e" />
+    <meta name="keywords" content="<%= locals.keywords || 'tiktok downloader, tiktok video downloader, tiktok video downloader without watermark, tiktok video downloader hd, tiktok video downloader mp3, tiktok video downloader online, tiktok video downloader apk, tiktok video downloader app, tiktok video downloader app for android, tiktok video downloader app for iphone, tiktok video downloader app for pc, tiktok video downloader app for windows, tiktok video downloader app for mac, tiktok video downloader app for ios, tiktok video downloader app for laptop, tiktok video downloader app for pc free download, tiktok video downloader app for android free download, tiktok video downloader app for iphone free download, tiktok video downloader app for pc windows 10, tiktok video downloader app for pc windows 7, tiktok video downloader app for pc windows 8, tiktok video downloader app for pc windows 8.1, tiktok video downloader app for pc windows xp, tiktok video downloader app for pc windows 7 free download, tiktok video downloader app for pc windows 10 free download, tiktok video downloader app for pc windows 8 free download, tiktok video downloader app for pc windows 8.1 free download, tiktok video downloader app for pc windows xp free download, tiktok video downloader app for pc free download windows 10, tiktok video downloader app for pc free download windows 7, tiktok video downloader app for pc free download windows 8, tiktok video downloader app for pc free download windows 8.1, tiktok video downloader app for pc free download windows xp, tiktok video downloader app for pc free download windows 10 64 bit, tiktok video downloader app for pc free download windows 7 64 bit, tiktok video downloader app for pc free download windows 8 64 bit, tiktok video downloader app for pc free download windows 8.1 64 bit, tiktok video downloader app for pc free download windows xp 64 bit, tiktok video downloader app for pc free download windows 10 32 bit, tiktok video downloader app for pc free download windows 7 32 bit, tiktok video downloader app for pc free download windows 8 32 bit, tiktok video downloader app for pc free download windows 8.1 32 bit, tiktok video downloader app for pc free download windows xp 32 bit, tiktok video downloader app for pc free download windows 10 32 bit' %>" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap"
+    />
+    
+    <style>
+      @media (min-width: 1281px) {
+        h4 {
+          font-size: 1.64rem;
+        }
+        .headone {
+          font-size: 2.5rem;
+          font-weight: 600;
+        }
+        .headtwo {
+          margin-top: -1%;
+          font-size: 1.3rem;
+        }
+        .headthird {
+          font-size: 1.64rem;
+        }
+      }
+      @media (min-width: 1025px) and (max-width: 1280px) {
+        h4 {
+          font-size: 1.64rem;
+        }
+        .headone {
+          font-size: 2.5rem;
+          font-weight: 600;
+        }
+        .headtwo {
+          margin-top: -1%;
+          font-size: 1.3rem;
+        }
+        .headthird {
+          font-size: 1.64rem;
+        }
+      }
+      @media (min-width: 768px) and (max-width: 1024px) {
+        h4 {
+          font-size: 1.64rem;
+        }
+        .headone {
+          font-size: 2rem;
+          font-weight: 600;
+        }
+        .headtwo {
+          margin-top: -1%;
+          font-size: 1.3rem;
+        }
+        .headthird {
+          font-size: 1.64rem;
+        }
+      }
+      @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        h4 {
+          font-size: 1.64rem;
+        }
+        .headone {
+          font-size: 2rem;
+          font-weight: 600;
+        }
+        .headtwo {
+          margin-top: -1%;
+          font-size: 1.3rem;
+        }
+        .headthird {
+          font-size: 1.64rem;
+        }
+      }
+      @media (min-width: 481px) and (max-width: 767px) {
+        h4 {
+          font-size: 1.64rem;
+        }
+        .headone {
+          font-size: 2rem;
+          font-weight: 600;
+        }
+        .headtwo {
+          margin-top: -1%;
+          font-size: 1.1rem;
+        }
+        .headthird {
+          font-size: 1.64rem;
+        }
+      }
+      @media (min-width: 320px) and (max-width: 480px) {
+        h4 {
+          font-size: 1.5rem;
+        }
+        h5 {
+          font-size: 1.3rem;
+        }
+        .headone {
+          font-size: 1.8rem;
+          font-weight: 600;
+        }
+        .headtwo {
+          margin-top: -1%;
+          font-size: 1.125rem;
+        }
+        .headthird {
+          font-size: 1.3rem;
+        }
+      }
+      @font-face {
+        font-family: cusfont;
+        src: url(/assets/font/custom.woff2) format("woff2");
+        font-display: swap;
+      }
+      .inputbg {
+        background-color: #ff2661;
+      }
+      .faq {
+        margin-bottom: 10px;
+      }
+      .inputw {
+        border-color: #fff;
+      }
+      .ScrollStyle {
+        max-height: 450px;
+        overflow-y: scroll;
+      }
+      .card {
+        margin-bottom: 0;
+        margin-top: 20px;
+        border-radius: 10px;
+      }
+      .placeholder {
+        color: #fff;
+        opacity: 1;
+      }
+      .cushead {
+        font-family: cusfont;
+      }
+      .cushead-li {
+        font-family: cusfont;
+        font-size: 1.5em;
+        color: #125688;
+      }
+      .bg {
+        background-color: #ef124e !important;
+      }
+      .welcome {
+        background-color: #ff0f50;
+        background-image: url(/assets/img/cover.png);
+      }
+      .preloader-background {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 22px;
+      }
+      .input-field .prefix.right {
+        right: 0;
+        color: #fff;
+        font-size: 1.8rem;
+      }
+      .ad-slot {
+        min-width: 300px;
+        min-height: 250px;
+      }
+      .collapsible-header {
+        font-weight: bolder;
+      }
+    </style>

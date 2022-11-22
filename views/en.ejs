@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <%- include('components/header-en.ejs') %>
+  </head>
+  <body>
+      <nav class="bg">
+        <div class="nav-wrapper">
+          <a href="/" class="cushead brand-logo center"
+            ><%= titleweb %></a
+          ><a data-target="mobile-demo" class="sidenav-trigger"
+            ><i class="material-icons">menu</i></a
+          >
+          <ul class="left hide-on-med-and-down">
+            <li class="active"><a href="/">Home</a></li>
+            
+            <li><a href="/about">About</a></li>
+      
+          </ul>
+          <ul class="right hide-on-med-and-down">
+            <li>
+              <a class="dropdown-trigger" data-target="languages">Language <i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+          </ul>
+          <ul id="languages" class="dropdown-content">
+            <li class="active">
+              <a href="/en">English</a>
+            </li>
+            <li>
+              <a href="/id">Bahasa Indonesia</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <ul class="sidenav" id="mobile-demo">
+      <li class="active"><a href="/">Home</a></li>
+      
+      <li><a href="/about">About</a></li>
+      
+     <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header"
+              >Language<i class="material-icons">arrow_drop_down</i></a
+            >
+            <div class="collapsible-body">
+              <ul>
+                <li class="active"><a href="/en">English</a></li>
+                <li><a href="/id">Bahasa Indonesia‬</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+        
+        </ul>
+      </li>
+    </ul>
+    <div class="welcome center">
+      <div class="container">
+        <div class="row">
+          <div class="col s12">
+            <h1 class="headone white-text">TikTok Downloader</h1>
+            <h2 class="headtwo white-text">
+              Download TikTok Videos Online. HD. No Watermark
+            </h2>
+            <div class="ad-slot">
+              
+              <script type="text/javascript">
+                (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </div>
+            <form
+              id="submit-form"
+              action="https://<%= req.hostname %>/download"
+              method="POST"
+              class="col s12"
+            >
+              <div class="row">
+                <div class="input-field col s12 inputbg">
+                  <input
+                    name="_qgB"
+                    type="text"
+                    autocapitalize="none"
+                    id="link_url"
+                    style="border-color: white"
+                    class="inputw white-text validate"
+                    required
+                    autocomplete="off"
+                  />
+                  <!-- <input
+                    name="_Mywck"
+                    type="hidden"
+                    value="42cbf0fff19ca05112e944f39babcfcc"
+                  />
+                  <input name="verify" type="hidden" value="1" /> -->
+                  <label class="white-text" for="link_url"
+                    >Enter TikTok Video OR Song Link ...</label
+                  >
+                  <div id="paste">
+                    <i class="material-icons prefix right">content_paste</i>
+                  </div>
+                </div>
+                <div class="input-field col s12">
+                  <button
+                    class="btn waves-effect waves-light orange"
+                    type="submit"
+                  >
+                    <i class="material-icons right">send</i> Download
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="col s12">
+        <div class="row section">
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center pink-text">
+                <i class="large material-icons">card_giftcard</i>
+              </h2>
+              <h5 class="center">Free Downloads!</h5>
+              <p class="light center-align">
+                Download Unlimited TikTok Videos Without a Watermark For Free.
+                Download TikTok videos without any Limit!
+              </p>
+            </div>
+          </div>
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center pink-text">
+                <i class="large material-icons">music_video</i>
+              </h2>
+              <h5 class="center">Videos & MP3</h5>
+              <p class="light center-align">
+                Download TikTok Videos in MP4 HD & TikTok MP3 from
+                <%= titleweb %>. TikTok Video Download in MP4 & MP3 Format.
+              </p>
+            </div>
+          </div>
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center pink-text">
+                <i class="large material-icons">cloud_download</i>
+              </h2>
+              <h5 class="center">Easy Downloads</h5>
+              <p class="light center-align">
+                We're the Fastest TikTok Video Downloader. Download TikTok video
+                without Watermark Easily with <%= titleweb %>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include("components/footer-en") %>
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+      type="text/javascript"
+    ></script>
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      if ("serviceWorker" in navigator) {
+                  window.addEventListener("load", function() {
+                      navigator.serviceWorker.register("/service-worker.js");
+                  });
+              }
+              $(document).ready(function() {
+                  $('.sidenav').sidenav();
+              });
+              $(document).ready(function() {
+                  $('.collapsible').collapsible();
+              });
+              $(".dropdown-trigger").dropdown();
+              $("#submit-form").submit(function() {
+                  $(this).find("button")[0].disabled = true;
+                  $(this).find("button").text("Please wait..");
+              });
+    </script>
+    <script type="text/javascript">
+      document.getElementById("paste").addEventListener("click", function(e) {
+                  e = document.getElementById("paste");
+                  var i = document.getElementById("link_url");
+                  '<i class="material-icons prefix right">delete</i>' === e.innerHTML ? (i.value = "", e.innerHTML = '<i class="material-icons prefix right">content_paste</i>', $("label[for='link_url']").removeClass("active")) : navigator.clipboard.readText().then(function(e) {
+                      return i.value = e
+                  }, e.innerHTML = '<i class="material-icons prefix right">delete</i>', $("label[for='link_url']").addClass("active"))
+              }); 
+    </script>
+  </body>
+</html>
