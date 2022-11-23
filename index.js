@@ -27,7 +27,12 @@ const STATIC_ROOT = pathJoin(__dirname, "public");
 var useragent = require('express-useragent');
 
 async function getVisitor() {
-return axios.get("https://api.countapi.xyz/hit/tikly.my.id/visits").
+return axios.get("https://api.countapi.xyz/get/tikly.my.id/visits").
+then(a => { return a.data.value }).catch(() => { return 0 })
+}
+
+async function addVisitor() {
+return axios.get("https://api.countapi.xyz/get/tikly.my.id/visits").
 then(a => { return a.data.value }).catch(() => { return 0 })
 }
  
@@ -76,28 +81,34 @@ res.send(req.useragent);
 })
 
 app.get("/id", async (req, res) => {
+  await addVisitor();
   res.cookie("lang", "ID", { maxAge: 900000, httpOnly: true });
   res.render("id")
 });
 
-app.get("/en", (req, res) => {
+app.get("/en", async (req, res) => {
+  await addVisitor();
   res.cookie("lang", "EN", { maxAge: 900000, httpOnly: true });
   res.render("en");
 });
 
-app.get("/about", (req, res) => {
+app.get("/about", async (req, res) => {
+  await addVisitor();
   res.render("about");
 });
 
-app.get("/contact", (req, res) => {
+app.get("/contact", async (req, res) => {
+  await addVisitor();
   res.render("contact");
 });
 
-app.get("/privacy", (req, res) => {
+app.get("/privacy", async (req, res) => {
+  await addVisitor();
   res.render("privacy");
 });
 
-app.get("/terms", (req, res) => {
+app.get("/terms", async (req, res) => {
+  await addVisitor();
   res.render("terms");
 });
 
