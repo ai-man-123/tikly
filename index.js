@@ -28,7 +28,7 @@ var useragent = require('express-useragent');
 
 async function getVisitor() {
 return axios.get("https://api.countapi.xyz/hit/tikly.my.id/visits").
-then(a => { return a.value }).catch(() => { return 0 })
+then(a => { return a.data.value }).catch(() => { return 0 })
 }
  
 app.use(useragent.express());
