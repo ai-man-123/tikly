@@ -12,7 +12,6 @@ const { createGzip } = require("zlib");
 const { Readable } = require("stream");
 const cookieParser = require("cookie-parser");
 const { getMeta } = require("./lib");	
-const visitors = require("./data/visitors.json");
 const mailer = require("nodemailer");
 const fs = require("fs");
 let transporter = mailer.createTransport({
@@ -27,29 +26,6 @@ let transporter = mailer.createTransport({
 const ROOT = pathJoin(__dirname, "views");
 const STATIC_ROOT = pathJoin(__dirname, "public");
 var useragent = require('express-useragent');
-
-function getVisitor(val = "visits") {
-if (!visitors[val]) {
-visitors[val] = 0;
-fs.writeFileSync("./data/visitors.json", JSON.stringify(visitors))
-return 0;
-} else {
-fs.writeFileSync("./data/visitors.json", JSON.stringify(visitors))
-return visitors[val]
-}
-}
-
-function addVisitor(val = "visits") {
-if (!visitors[val]) {
-visitors[val] = 0;
-fs.writeFileSync("./data/visitors.json", JSON.stringify(visitors))
-return 0;
-} else {
-visitors[val] += 1;
-fs.writeFileSync("./data/visitors.json", JSON.stringify(visitors))
-return visitors[val]
-}
-}
  
 app.use(useragent.express());
 app.set("views", ROOT);
@@ -67,8 +43,6 @@ app.use(async (req, res, next) => {
   res.locals.ipAddr = req.headers["cf-connecting-ip"] || req.ip;
   res.locals.ua = req.useragent;
   res.locals.speeds = Date.now();
-  res.locals.visitor = await getVisitor();
-  res.locals.downuse = await getVisitor("download");
   next();
 });
 
@@ -102,34 +76,28 @@ res.send(visitors);
 })
 
 app.get("/id", async (req, res) => {
-  await addVisitor();
   res.cookie("lang", "ID", { maxAge: 900000, httpOnly: true });
   res.render("id")
 });
 
 app.get("/en", async (req, res) => {
-  await addVisitor();
   res.cookie("lang", "EN", { maxAge: 900000, httpOnly: true });
   res.render("en");
 });
 
 app.get("/about", async (req, res) => {
-  await addVisitor();
   res.render("about");
 });
 
 app.get("/contact", async (req, res) => {
-  await addVisitor();
   res.render("contact");
 });
 
 app.get("/privacy", async (req, res) => {
-  await addVisitor();
   res.render("privacy");
 });
 
 app.get("/terms", async (req, res) => {
-  await addVisitor();
   res.render("terms");
 });
 
@@ -150,23 +118,6 @@ app.post("/contact", async (req, res) => {
     console.log(err);
     res.render("contact", { success: false })
   }
-});
-
-
-app.get("/allpathroute", (req, res) => {
-  let data = [];
-  app._router.stack.forEach(function (r) {
-    if (r.route && r.route.path) {
-      if (typeof r.route.path == "object") {
-        r.route.path.map((path) => {
-          data.push(path);
-        });
-      } else {
-        data.push(r.route.path);
-      }
-    }
-  });
-  res.send(data);
 });
 
 app.post("/download", async (req, res) => {
