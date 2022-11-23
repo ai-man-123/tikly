@@ -128,7 +128,6 @@ app.post("/download", async (req, res) => {
   } else {
     try {
       let meta = await getMeta(url);
-      await addVisitor("download")
       res.render("download", { result: meta });
     } catch (err) {
       res.render("id", { error: err.message });
