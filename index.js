@@ -32,7 +32,7 @@ then(a => { return a.data.value }).catch(() => { return 0 })
 }
 
 async function addVisitor() {
-return axios.get("https://api.countapi.xyz/get/tikly.my.id/visits").
+return axios.get("https://api.countapi.xyz/add/tikly.my.id/visits").
 then(a => { return a.data.value }).catch(() => { return 0 })
 }
  
