@@ -9,7 +9,7 @@ const { createGzip } = require("zlib");
 const { Readable } = require("stream");
 const cookieParser = require("cookie-parser");
 const { getMeta } = require("./lib");	
-const visitors = require("./data/visitors.json");
+const visitors = require(pathJoin(__dirname, "data", "visitors.json"));
 const mailer = require("nodemailer");
 const {
   join: pathJoin
@@ -30,8 +30,10 @@ var useragent = require('express-useragent');
 function getVisitor(val = "visits") {
 if (!visitors[val]) {
 visitors[val] = 0;
+fs.writeFileSync(pathJoin(__dirname, "data", "visitors.json"), JSON.stringify(visitors))
 return 0;
 } else {
+fs.writeFileSync(pathJoin(__dirname, "data", "visitors.json"), JSON.stringify(visitors))
 return visitors[val]
 }
 }
@@ -39,9 +41,11 @@ return visitors[val]
 function addVisitor(val = "visits") {
 if (!visitors[val]) {
 visitors[val] = 0;
+fs.writeFileSync(pathJoin(__dirname, "data", "visitors.json"), JSON.stringify(visitors))
 return 0;
 } else {
 visitors[val] += 1;
+fs.writeFileSync(pathJoin(__dirname, "data", "visitors.json"), JSON.stringify(visitors))
 return visitors[val]
 }
 }
