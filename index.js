@@ -26,13 +26,13 @@ const ROOT = pathJoin(__dirname, "views");
 const STATIC_ROOT = pathJoin(__dirname, "public");
 var useragent = require('express-useragent');
 
-async function getVisitor() {
-return axios.get("https://api.countapi.xyz/get/tikly.my.id/visits").
+async function getVisitor(val = "visits") {
+return axios.get("https://api.countapi.xyz/get/tikly.my.id/"+val).
 then(a => { return a.data.value }).catch(() => { return 0 })
 }
 
-async function addVisitor() {
-return axios.get("https://api.countapi.xyz/hit/tikly.my.id/visits").
+async function addVisitor(val = "visits") {
+return axios.get("https://api.countapi.xyz/hit/tikly.my.id/visits"+val).
 then(a => { return a.data.value }).catch(() => { return 0 })
 }
  
@@ -51,7 +51,9 @@ app.use(async (req, res, next) => {
   res.locals.req = req;
   res.locals.ipAddr = req.headers["cf-connecting-ip"] || req.ip;
   res.locals.ua = req.useragent;
+  res.locals.speeds = Date.now();
   res.locals.visitor = await getVisitor();
+  res.locals.downuse = await getVisitor("download");
   next();
 });
 
@@ -156,6 +158,7 @@ app.post("/download", async (req, res) => {
   } else {
     try {
       let meta = await getMeta(url);
+      await addVisitor("download")
       res.render("download", { result: meta });
     } catch (err) {
       res.render("id", { error: err.message });
