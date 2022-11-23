@@ -1,6 +1,6 @@
 {
-  "name": "<%= titleweb %> - TikTok Downloader",
-  "short_name": "<%= titleweb %> - TikTok Downloader",
+  "name": "Tikly - TikTok Downloader",
+  "short_name": "Tikly - TikTok Downloader",
   "theme_color": "#ef124e",
   "background_color": "#ff0f50",
   "display": "standalone",
