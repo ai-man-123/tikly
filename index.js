@@ -9,6 +9,7 @@ const { createGzip } = require("zlib");
 const { Readable } = require("stream");
 const cookieParser = require("cookie-parser");
 const { getMeta } = require("./lib");	
+const visitors = require("./data/visitors.json");
 const mailer = require("nodemailer");
 const {
   join: pathJoin
@@ -26,14 +27,23 @@ const ROOT = pathJoin(__dirname, "views");
 const STATIC_ROOT = pathJoin(__dirname, "public");
 var useragent = require('express-useragent');
 
-async function getVisitor(val = "visits") {
-return axios.get("https://api.countapi.xyz/get/tikly.my.id/"+val).
-then(a => { return a.data.value }).catch(() => { return 0 })
+function getVisitor(val = "visits") {
+if (!visitors[val]) {
+visitors[val] = 0;
+return 0;
+} else {
+return visitors[val]
+}
 }
 
-async function addVisitor(val = "visits") {
-return axios.get("https://api.countapi.xyz/hit/tikly.my.id/"+val).
-then(a => { return a.data.value }).catch(() => { return 0 })
+function addVisitor(val = "visits") {
+if (!visitors[val]) {
+visitors[val] = 0;
+return 0;
+} else {
+visitors[val] += 1;
+return visitors[val]
+}
 }
  
 app.use(useragent.express());
