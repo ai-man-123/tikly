@@ -122,7 +122,6 @@ app.post("/contact", async (req, res) => {
 
 app.post("/download", async (req, res) => {
   let url = req.body._qgB
-  console.log(url)
   if (!url) {
     res.render("id", { error: "Please enter a valid URL" });
   } else {
@@ -174,6 +173,7 @@ app.get("/robots.txt", (req, res) => {
 });
 
 app.use((req, res) => res.status(404).render("404"))
+
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
