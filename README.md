@@ -12,3 +12,5 @@ Simple tiktok downloader with nodejs
 * Download Watermark ✅
 * Download Audio ✅
 * Auto Redirect ID/EN ✅
+* Auto sitemap ✅
+* Auto Robots.txt ✅
