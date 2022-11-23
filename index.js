@@ -40,12 +40,12 @@ app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
   res.locals.titleweb = "Tikly";
   res.locals.req = req;
   res.locals.ipAddr = req.headers["cf-connecting-ip"] || req.ip;
   res.locals.ua = req.useragent;
-  res.locals.getVisitor = getVisitor
+  res.locals.visitor = await getVisitor();
   next();
 });
 
@@ -74,12 +74,13 @@ app.get("/ua", (req, res) => {
 res.send(req.useragent);
 })
 
-app.get("/id", (req, res) => {
+app.get("/id", async (req, res) => {
   res.cookie("lang", "ID", { maxAge: 900000, httpOnly: true });
-  res.render("id");
+  res.render("id")
 });
 
 app.get("/en", (req, res) => {
+  let visitor = await getVisitor();
   res.cookie("lang", "EN", { maxAge: 900000, httpOnly: true });
   res.render("en");
 });
