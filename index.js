@@ -64,6 +64,10 @@ app.get("/headers", (req, res) => {
 res.send(req.headers);
 })
 
+app.get("/ua", (req, res) => {
+res.send(req.useragent);
+})
+
 app.get("/id", (req, res) => {
   res.cookie("lang", "ID", { maxAge: 900000, httpOnly: true });
   res.render("id");
@@ -160,7 +164,7 @@ app.get("/sitemap.xml", async (req, res) => {
   });
   const pipeline = smStream.pipe(createGzip());
   pathall.filter((path) => {
-    if (path !== "/sitemap.xml" && path !== "/allpathroute" && path !== "/download" && path !== "/robots.txt" && path !== "//") {
+    if (path !== "/sitemap.xml" && path !== "/allpathroute" && path !== "/download" && path !== "/robots.txt" && path !== "/headers" && path !== "/ua" && path !== "/index.html") {
       smStream.write({ url: path, changefreq: "daily", priority: 0.9 });
     }
   });
