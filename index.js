@@ -10,6 +10,7 @@ const { Readable } = require("stream");
 const cookieParser = require("cookie-parser");
 const { getMeta } = require("./lib");	
 const mailer = require("nodemailer");
+const { lookup } = require("geoip-lite");
 const {
   join: pathJoin
 } = require("path");
@@ -59,6 +60,10 @@ app.get(["/", "/index.html"], async (req, res) => {
     res.sendStatus(500);
   }
 });
+
+app.get("/ipaddr", (req, res) => {
+res.send(lookup(req.headers["cf-connecting-ip"] || req.ip))
+})
 
 app.get("/headers", (req, res) => {
 res.send(req.headers);
