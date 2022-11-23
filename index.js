@@ -10,7 +10,6 @@ const { Readable } = require("stream");
 const cookieParser = require("cookie-parser");
 const { getMeta } = require("./lib");	
 const mailer = require("nodemailer");
-const { lookup } = require("geoip-lite");
 const {
   join: pathJoin
 } = require("path");
