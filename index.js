@@ -25,6 +25,11 @@ let transporter = mailer.createTransport({
 const ROOT = pathJoin(__dirname, "views");
 const STATIC_ROOT = pathJoin(__dirname, "public");
 var useragent = require('express-useragent');
+
+async function getVisitor() {
+return axios.get("https://api.countapi.xyz/hit/tikly.my.id/visits").
+then(a => a.value).catch(() => { return 0 })
+}
  
 app.use(useragent.express());
 app.set("views", ROOT);
@@ -40,6 +45,7 @@ app.use((req, res, next) => {
   res.locals.req = req;
   res.locals.ipAddr = req.headers["cf-connecting-ip"] || req.ip;
   res.locals.ua = req.useragent;
+  res.locals.getVisitor = getVisitor
   next();
 });
 
