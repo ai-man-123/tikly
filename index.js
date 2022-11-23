@@ -81,7 +81,6 @@ app.get("/id", async (req, res) => {
 });
 
 app.get("/en", (req, res) => {
-  let visitor = await getVisitor();
   res.cookie("lang", "EN", { maxAge: 900000, httpOnly: true });
   res.render("en");
 });
