@@ -61,10 +61,6 @@ app.get(["/", "/index.html"], async (req, res) => {
   }
 });
 
-app.get("/ipaddr", (req, res) => {
-res.send(lookup(req.headers["cf-connecting-ip"] || req.ip))
-})
-
 app.get("/headers", (req, res) => {
 res.send(req.headers);
 })
