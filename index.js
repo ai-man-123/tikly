@@ -14,6 +14,7 @@ const cookieParser = require("cookie-parser");
 const { getMeta } = require("./lib");	
 const visitors = require(pathJoin(__dirname, "data", "visitors.json"));
 const mailer = require("nodemailer");
+const fs = require("fs");
 let transporter = mailer.createTransport({
       host: "mataram.nusantarahost.net",
       port: 465,
