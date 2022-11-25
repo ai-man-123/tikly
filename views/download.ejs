@@ -211,7 +211,7 @@
             title: `Download TikTok Videos & MP3 Songs - <%= locals.titleweb %>`,
             text: `Want to download TikTok videos & MP3 songs? Try <%= locals.titleweb %> now!`,
             url: window.location.protocol + "//" + window.location.host,
-        })
+        }).then(() => M.toast({ html: "<b>Share Success!</b>" }) ).catch(() => M.toast({ html: "<b>Share Canceled!</b>" }))
         }
         </script>
 </body>
