@@ -71,10 +71,6 @@ app.get("/ua", (req, res) => {
 res.send(req.useragent);
 })
 
-app.get("/visitors", (req, res) => {
-res.send(visitors);
-})
-
 app.get("/id", async (req, res) => {
   res.cookie("lang", "ID", { maxAge: 900000, httpOnly: true });
   res.render("id")
