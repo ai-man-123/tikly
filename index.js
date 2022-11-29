@@ -15,12 +15,12 @@ const { getMeta } = require("./lib");
 const mailer = require("nodemailer");
 const fs = require("fs");
 let transporter = mailer.createTransport({
-      host: "mataram.nusantarahost.net",
+      host: "YOUR_SMTP",
       port: 465,
       secure: true,
       auth: {
-        user: "noreply@caliph.my.id",
-        pass: "clph123@/",
+        user: "YOUR_EMAIL",
+        pass: "YOUR_PASSWD",
       },
     });
 const ROOT = pathJoin(__dirname, "views");
