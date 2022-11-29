@@ -103,7 +103,7 @@ app.post("/contact", async (req, res) => {
 
     let mail = {
       from: `"${name}" <${email}>`,
-      to: "caliphatibrata368@gmail.com",
+      to: "EMAIL_RECEIVER",
       subject: "Tikly Contact",
       text: `===== Tikly Contacts =====\n\nFrom: ${email}\nName: ${name}\nMessage: ${message}\n\n===== Automated Send Mail =====`,	
     };
